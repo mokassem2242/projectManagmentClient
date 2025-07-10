@@ -67,6 +67,12 @@
                             <i class="fa-solid fa-trash"></i>
                             <span class="sr-only">حذف</span>
                         </button>
+                        <button type="button"
+                            class="inline-flex items-center gap-1 text-primary hover:text-primary-dark bg-primary/10 hover:bg-primary/20 rounded px-2 py-1 transition focus:outline-none focus:ring-2 focus:ring-primary shadow-sm"
+                            aria-label="عرض المهام" (click)="openTasksSidebar(project)">
+                            <i class="fa-solid fa-list-check"></i>
+                            <span class="sr-only">عرض المهام</span>
+                        </button>
                     </td>
                 </tr>
             </ng-template>
@@ -125,3 +131,114 @@
 </div>
 <p-toast></p-toast>
 <p-confirmDialog></p-confirmDialog>
+
+<p-drawer [visible]="tasksSidebarVisible()" (visibleChange)="tasksSidebarVisible.set($event)" position="left"
+    [baseZIndex]="10001" class="w-full max-w-none md:w-[1000px]">
+    <div>
+        <button type="button" aria-label="إغلاق"
+            class="absolute top-4 right-4 text-gray-500 hover:text-primary transition" (click)="closeTasksSidebar()">
+            <i class="pi pi-times text-xl"></i>
+        </button>
+        <h3 class="text-xl font-semibold mb-6 text-right">مهام المشروع</h3>
+        <div *ngIf="selectedProjectTasks()?.length; else noTasks">
+            <table class="w-full min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                <thead class="bg-primary/90 text-white">
+                    <tr>
+                        <th class="px-4 py-2 text-right">اسم المهمة</th>
+                        <th class="px-4 py-2 text-right">الوصف</th>
+                        <th class="px-4 py-2 text-right">تاريخ التسليم</th>
+                        <th class="px-4 py-2 text-right">مكتملة؟</th>
+                        <th class="px-4 py-2 text-right">إجراءات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let task of selectedProjectTasks(); let i = index">
+                        <ng-container *ngIf="editTaskIndex === i; else normalRow">
+                            <td class="px-4 py-2"><input pInputText [(ngModel)]="editTask.name" class="w-full" /></td>
+                            <td class="px-4 py-2"><input pInputText [(ngModel)]="editTask.description" class="w-full" />
+                            </td>
+                            <td class="px-4 py-2"><p-calendar [(ngModel)]="editTask.dueDate" dateFormat="yy-mm-dd"
+                                    class="w-full" showIcon></p-calendar></td>
+                            <td class="px-4 py-2 text-center"><input type="checkbox"
+                                    [(ngModel)]="editTask.isCompleted" />
+                            </td>
+                            <td class="px-4 py-2 flex gap-2 justify-end">
+                                <button type="button"
+                                    class="text-green-600 hover:text-green-800 bg-green-50 hover:bg-green-100 rounded px-2 py-1 transition"
+                                    (click)="onSaveTask(i)">
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
+                                <button type="button"
+                                    class="text-gray-600 hover:text-gray-800 bg-gray-50 hover:bg-gray-100 rounded px-2 py-1 transition"
+                                    (click)="onCancelEditTask()">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </button>
+                            </td>
+                        </ng-container>
+                        <ng-template #normalRow>
+                    <tr>
+                        <td class="px-4 py-2">{{ task.name }}</td>
+                        <td class="px-4 py-2">{{ task.description }}</td>
+                        <td class="px-4 py-2">{{ task.dueDate | date:'yyyy-MM-dd' }}</td>
+                        <td class="px-4 py-2">
+                            <span [ngClass]="task.isCompleted ? 'text-green-600 font-bold' : 'text-red-600 font-bold'">
+                                {{ task.isCompleted ? 'نعم' : 'لا' }}
+                            </span>
+                        </td>
+                        <td class="px-4 py-2 flex gap-2 justify-end">
+                            <button type="button"
+                                class="text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 rounded px-2 py-1 transition"
+                                (click)="onEditTask(i)">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
+                            <button type="button"
+                                class="text-red-600 hover:text-red-800 bg-red-50 hover:bg-red-100 rounded px-2 py-1 transition"
+                                (click)="onDeleteTask(i)">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    </ng-template>
+                    </tr>
+                    <tr *ngIf="addTaskMode">
+                        <td class="px-4 py-2"><input pInputText [(ngModel)]="newTask.name" class="w-full"
+                                placeholder="اسم المهمة" /></td>
+                        <td class="px-4 py-2"><input pInputText [(ngModel)]="newTask.description" class="w-full"
+                                placeholder="الوصف" /></td>
+                        <td class="px-4 py-2"><p-calendar [(ngModel)]="newTask.dueDate" dateFormat="yy-mm-dd"
+                                class="w-full" showIcon></p-calendar></td>
+                        <td class="px-4 py-2 text-center"><input type="checkbox" [(ngModel)]="newTask.isCompleted" />
+                        </td>
+                        <td class="px-4 py-2 flex gap-2 justify-end">
+                            <button type="button"
+                                class="text-green-600 hover:text-green-800 bg-green-50 hover:bg-green-100 rounded px-2 py-1 transition"
+                                (click)="onAddTask()">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                            <button type="button"
+                                class="text-gray-600 hover:text-gray-800 bg-gray-50 hover:bg-gray-100 rounded px-2 py-1 transition"
+                                (click)="onCancelAddTask()">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="flex justify-end mt-4">
+                <button type="button" class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark transition"
+                    (click)="onShowAddTask()">
+                    <i class="fa-solid fa-plus mr-2"></i> إضافة مهمة
+                </button>
+            </div>
+        </div>
+        <ng-template #noTasks>
+            <div class="text-center text-gray-500">لا توجد مهام لهذا المشروع.</div>
+            <div class="flex justify-end mt-4">
+                <button type="button" class="bg-primary text-white px-4 py-2 rounded hover:bg-primary-dark transition"
+                    (click)="onShowAddTask()">
+                    <i class="fa-solid fa-plus mr-2"></i> إضافة مهمة
+                </button>
+            </div>
+        </ng-template>
+    </div>
+</p-drawer>

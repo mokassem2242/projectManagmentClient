@@ -39,14 +39,14 @@ import { AuthService } from '../auth/services/auth.service';
             <span class="text-xs text-purple-500 font-semibold mt-2">إدارة المشاريع</span>
           </button>
           <!-- Task Card -->
-          <button (click)="navigateToTasks()" aria-label="إدارة المهام" class="group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border-t-4 border-indigo-500 flex flex-col items-end p-8 relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2">
-            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-l from-indigo-400 to-purple-400 opacity-20"></div>
-            <div class="bg-gradient-to-br from-indigo-500 to-purple-500 text-white rounded-full p-5 mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+          <button disabled aria-label="إدارة المهام" class="group bg-white rounded-3xl shadow-lg border-t-4 border-indigo-200 flex flex-col items-end p-8 relative overflow-hidden opacity-60 cursor-not-allowed focus:outline-none">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-l from-indigo-200 to-purple-200 opacity-10"></div>
+            <div class="bg-gradient-to-br from-indigo-300 to-purple-300 text-white rounded-full p-5 mb-6 shadow-lg">
               <i class="fas fa-tasks fa-2x"></i>
             </div>
             <h3 class="text-xl font-bold mb-2">المهام</h3>
-            <p class="text-gray-600 text-right mb-1">أنشئ وأدر المهام الخاصة بكل مشروع بسهولة وفعالية</p>
-            <span class="text-xs text-indigo-500 font-semibold mt-2">إدارة المهام</span>
+            <p class="text-gray-400 text-right mb-1">أنشئ وأدر المهام الخاصة بكل مشروع بسهولة وفعالية</p>
+            <span class="text-xs text-indigo-300 font-semibold mt-2">إدارة المهام</span>
           </button>
         </div>
       </div>
@@ -75,7 +75,7 @@ export class DashboardComponent {
 
   navigateToProjects(): void {
     // TODO: Update with real route when available
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/projects']);
   }
 
   navigateToTasks(): void {

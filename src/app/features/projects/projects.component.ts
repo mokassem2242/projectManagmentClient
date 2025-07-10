@@ -40,6 +40,85 @@ export class ProjectsComponent implements OnInit {
 
     formProject: Project = this.getEmptyProject();
 
+    tasksSidebarVisible = signal(false);
+    selectedProjectTasks = signal<Task[] | null>(null);
+
+    openTasksSidebar(project: { tasks: Task[] }) {
+        this.selectedProjectTasks.set(project.tasks ?? []);
+        this.tasksSidebarVisible.set(true);
+    }
+
+    closeTasksSidebar() {
+        this.tasksSidebarVisible.set(false);
+        this.selectedProjectTasks.set(null);
+    }
+
+    // Task management state for sidebar
+    addTaskMode = false;
+    editTaskIndex: number | null = null;
+    newTask: Partial<Task> = { name: '', description: '', dueDate: '', isCompleted: false };
+    editTask: Partial<Task> = {};
+
+    onShowAddTask() {
+        this.addTaskMode = true;
+        this.newTask = { name: '', description: '', dueDate: '', isCompleted: false };
+        this.editTaskIndex = null;
+    }
+    onCancelAddTask() {
+        this.addTaskMode = false;
+        this.newTask = { name: '', description: '', dueDate: '', isCompleted: false };
+    }
+    onAddTask() {
+        if (!this.newTask.name || !this.newTask.dueDate) return;
+        const task: Task = {
+            id: this.generateId(),
+            projectId: this.selectedProject()?.id ?? '',
+            name: this.newTask.name!,
+            description: this.newTask.description ?? '',
+            dueDate: typeof this.newTask.dueDate === 'string' ? this.newTask.dueDate : (this.newTask.dueDate as Date).toISOString(),
+            isCompleted: !!this.newTask.isCompleted,
+        };
+        this.formProject.tasks.push(task);
+        this.selectedProjectTasks.set([...this.formProject.tasks]);
+        this.addTaskMode = false;
+        this.newTask = { name: '', description: '', dueDate: '', isCompleted: false };
+    }
+    onEditTask(index: number) {
+        this.editTaskIndex = index;
+        const task = this.selectedProjectTasks()?.[index];
+        if (task) {
+            this.editTask = { ...task };
+        }
+        this.addTaskMode = false;
+    }
+    onCancelEditTask() {
+        this.editTaskIndex = null;
+        this.editTask = {};
+    }
+    onSaveTask(index: number) {
+        if (!this.editTask.name || !this.editTask.dueDate) return;
+        const updatedTask: Task = {
+            id: this.editTask.id!,
+            projectId: this.selectedProject()?.id ?? '',
+            name: this.editTask.name!,
+            description: this.editTask.description ?? '',
+            dueDate: typeof this.editTask.dueDate === 'string' ? this.editTask.dueDate : (this.editTask.dueDate as Date).toISOString(),
+            isCompleted: !!this.editTask.isCompleted,
+        };
+        this.formProject.tasks[index] = updatedTask;
+        this.selectedProjectTasks.set([...this.formProject.tasks]);
+        this.editTaskIndex = null;
+        this.editTask = {};
+    }
+    onDeleteTask(index: number) {
+        this.formProject.tasks.splice(index, 1);
+        this.selectedProjectTasks.set([...this.formProject.tasks]);
+        if (this.editTaskIndex === index) {
+            this.editTaskIndex = null;
+            this.editTask = {};
+        }
+    }
+
 
     private getEmptyProject(): Project {
         return {
