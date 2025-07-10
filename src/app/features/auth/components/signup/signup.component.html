@@ -1,0 +1,198 @@
+<div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+  <div class="w-full max-w-lg">
+    
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">إنشاء حساب جديد</h1>
+      <p class="text-gray-600">انضم إلينا وابدأ في إدارة مشاريعك</p>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-xl border-0 p-8">
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="space-y-6">
+        
+        <!-- Name Fields Row -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- First Name -->
+          <div class="space-y-2">
+            <label for="firstName" class="block text-sm font-medium text-gray-700 text-right">
+              الاسم الأول
+            </label>
+            <input
+              id="firstName"
+              type="text"
+              formControlName="firstName"
+              placeholder="الاسم الأول"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 text-right"
+              [class.border-red-500]="isFieldInvalid('firstName')"
+              [class.border-green-500]="isFieldValid('firstName')"
+            >
+            <small class="text-red-500 text-right block text-sm" *ngIf="getFieldError('firstName')">
+              {{ getFieldError('firstName') }}
+            </small>
+          </div>
+
+          <!-- Last Name -->
+          <div class="space-y-2">
+            <label for="lastName" class="block text-sm font-medium text-gray-700 text-right">
+              اسم العائلة
+            </label>
+            <input
+              id="lastName"
+              type="text"
+              formControlName="lastName"
+              placeholder="اسم العائلة"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 text-right"
+              [class.border-red-500]="isFieldInvalid('lastName')"
+              [class.border-green-500]="isFieldValid('lastName')"
+            >
+            <small class="text-red-500 text-right block text-sm" *ngIf="getFieldError('lastName')">
+              {{ getFieldError('lastName') }}
+            </small>
+          </div>
+        </div>
+
+        <!-- Email Field -->
+        <div class="space-y-2">
+          <label for="email" class="block text-sm font-medium text-gray-700 text-right">
+            البريد الإلكتروني
+          </label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            placeholder="أدخل بريدك الإلكتروني"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 text-right"
+            [class.border-red-500]="isFieldInvalid('email')"
+            [class.border-green-500]="isFieldValid('email')"
+          >
+          <small class="text-red-500 text-right block text-sm" *ngIf="getFieldError('email')">
+            {{ getFieldError('email') }}
+          </small>
+        </div>
+
+        <!-- Phone Number Field -->
+        <div class="space-y-2">
+          <label for="phoneNumber" class="block text-sm font-medium text-gray-700 text-right">
+            رقم الهاتف
+          </label>
+          <input
+            id="phoneNumber"
+            type="tel"
+            formControlName="phoneNumber"
+            placeholder="أدخل رقم هاتفك"
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 text-right"
+            [class.border-red-500]="isFieldInvalid('phoneNumber')"
+            [class.border-green-500]="isFieldValid('phoneNumber')"
+          >
+          <small class="text-red-500 text-right block text-sm" *ngIf="getFieldError('phoneNumber')">
+            {{ getFieldError('phoneNumber') }}
+          </small>
+        </div>
+
+        <!-- Password Fields Row -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Password -->
+          <div class="space-y-2">
+            <label for="password" class="block text-sm font-medium text-gray-700 text-right">
+              كلمة المرور
+            </label>
+            <div class="relative">
+              <input
+                id="password"
+                [type]="showPassword ? 'text' : 'password'"
+                formControlName="password"
+                placeholder="أدخل كلمة المرور"
+                class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 text-right"
+                [class.border-red-500]="isFieldInvalid('password')"
+                [class.border-green-500]="isFieldValid('password')"
+              >
+              <button
+                type="button"
+                (click)="togglePasswordVisibility()"
+                class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
+              >
+                <i class="fas" [class.fa-eye]="!showPassword" [class.fa-eye-slash]="showPassword"></i>
+              </button>
+            </div>
+            <small class="text-red-500 text-right block text-sm" *ngIf="getFieldError('password')">
+              {{ getFieldError('password') }}
+            </small>
+          </div>
+
+          <!-- Confirm Password -->
+          <div class="space-y-2">
+            <label for="confirmPassword" class="block text-sm font-medium text-gray-700 text-right">
+              تأكيد كلمة المرور
+            </label>
+            <div class="relative">
+              <input
+                id="confirmPassword"
+                [type]="showConfirmPassword ? 'text' : 'password'"
+                formControlName="confirmPassword"
+                placeholder="أعد إدخال كلمة المرور"
+                class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 text-right"
+                [class.border-red-500]="isFieldInvalid('confirmPassword')"
+                [class.border-green-500]="isFieldValid('confirmPassword')"
+              >
+              <button
+                type="button"
+                (click)="toggleConfirmPasswordVisibility()"
+                class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
+              >
+                <i class="fas" [class.fa-eye]="!showConfirmPassword" [class.fa-eye-slash]="showConfirmPassword"></i>
+              </button>
+            </div>
+            <small class="text-red-500 text-right block text-sm" *ngIf="getFieldError('confirmPassword')">
+              {{ getFieldError('confirmPassword') }}
+            </small>
+          </div>
+        </div>
+
+        <!-- Password Match Error -->
+        <div *ngIf="getPasswordMatchError()" class="text-red-500 text-right text-sm">
+          {{ getPasswordMatchError() }}
+        </div>
+
+        <!-- Submit Button -->
+        <div class="pt-4">
+          <button
+            type="submit"
+            [disabled]="signupForm.invalid || isLoading"
+            class="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2"
+          >
+            <i class="fas fa-user-plus" *ngIf="!isLoading"></i>
+            <i class="fas fa-spinner fa-spin" *ngIf="isLoading"></i>
+            <span>{{ isLoading ? 'جاري الإنشاء...' : 'إنشاء الحساب' }}</span>
+          </button>
+        </div>
+
+        <!-- Divider -->
+        <div class="relative my-6">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t border-gray-300"></div>
+          </div>
+          <div class="relative flex justify-center text-sm">
+            <span class="px-2 bg-white text-gray-500">أو</span>
+          </div>
+        </div>
+
+        <!-- Login Link -->
+        <div class="text-center">
+          <p class="text-gray-600">
+            لديك حساب بالفعل؟
+            <a routerLink="/auth/login" class="text-blue-600 hover:text-blue-800 font-medium transition-colors duration-200">
+              تسجيل الدخول
+            </a>
+          </p>
+        </div>
+
+      </form>
+    </div>
+
+    <!-- Footer -->
+    <div class="text-center mt-8">
+      <p class="text-gray-500 text-sm">
+        © 2024 نظام إدارة المشاريع. جميع الحقوق محفوظة
+      </p>
+    </div>
+  </div>
+</div> 

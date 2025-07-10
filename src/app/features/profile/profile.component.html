@@ -1,0 +1,39 @@
+<div
+  class="min-h-[60vh] flex flex-col items-center justify-center bg-gradient-to-br from-white to-blue-50 rounded-2xl shadow-xl p-10 max-w-lg mx-auto mt-12">
+  <div class="flex flex-col items-center mb-6 w-full">
+    <div class="relative w-28 h-28 mb-3">
+      <img *ngIf="user?.profileImagePath; else defaultAvatar" [src]="user?.profileImagePath" alt="صورة الملف الشخصي"
+        class="w-28 h-28 rounded-full border-4 border-blue-200 object-cover shadow-lg" />
+      <ng-template #defaultAvatar>
+        <div
+          class="w-28 h-28 rounded-full bg-blue-100 flex items-center justify-center border-4 border-blue-200 shadow-lg">
+          <i class="fas fa-user text-blue-500 text-5xl" aria-hidden="true"></i>
+        </div>
+      </ng-template>
+    </div>
+    <div class="text-2xl font-extrabold text-gray-900 mb-1" dir="auto">
+      <span *ngIf="user">{{ user.firstName }} {{ user.lastName }}</span>
+    </div>
+  </div>
+  <div class="w-full space-y-4 text-right">
+    <div class="flex items-center gap-2 text-blue-900">
+      <i class="fas fa-envelope text-blue-500" aria-hidden="true"></i>
+      <span class="font-semibold">البريد الإلكتروني:</span>
+      <span class="ltr:ml-1 rtl:mr-1 break-all">{{ user?.email }}</span>
+    </div>
+    <div class="flex items-center gap-2 text-blue-900">
+      <i class="fas fa-phone text-blue-500" aria-hidden="true"></i>
+      <span class="font-semibold">رقم الجوال:</span>
+      <span>{{ user?.phoneNumber }}</span>
+    </div>
+    <div class="flex items-center gap-2 text-blue-900" *ngIf="user?.roles?.length">
+      <i class="fas fa-user-tag text-blue-500" aria-hidden="true"></i>
+      <span class="font-semibold">الدور:</span>
+      <span>
+        <ng-container *ngFor="let role of user?.roles; let last = last">
+          {{ role }}<span *ngIf="!last">، </span>
+        </ng-container>
+      </span>
+    </div>
+  </div>
+</div>

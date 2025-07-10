@@ -1,0 +1,185 @@
+<div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 font-sans rtl">
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden py-24 bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div class="container mx-auto flex flex-col-reverse lg:flex-row items-center justify-between gap-16 px-4">
+      <!-- Hero Text -->
+      <div class="w-full lg:w-1/2 text-right">
+        <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
+          <span class="block">إدارة المشاريع</span>
+          <span class="block bg-gradient-to-l from-indigo-600 to-purple-500 bg-clip-text text-transparent">
+            بأحدث التقنيات
+          </span>
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-600 mb-10">
+          منصة متكاملة لإدارة المشاريع بفعالية عالية. تعاون مع فريقك، تتبع التقدم، وحقق أهدافك بسهولة.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-end">
+          <button
+            (click)="navigateToSignup()"
+            aria-label="ابدأ الآن مجاناً"
+            class="px-10 py-4 rounded-xl text-lg font-bold bg-gradient-to-l from-indigo-600 to-purple-500 text-white shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-200 flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+          >
+            <i class="fas fa-rocket"></i>
+            ابدأ الآن مجاناً
+          </button>
+          <button
+            (click)="navigateToLogin()"
+            aria-label="تسجيل الدخول"
+            class="px-10 py-4 rounded-xl text-lg font-bold bg-white text-indigo-700 border border-indigo-600 hover:bg-indigo-50 shadow flex items-center gap-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
+          >
+            <i class="fas fa-sign-in-alt"></i>
+            تسجيل الدخول
+          </button>
+        </div>
+      </div>
+      <!-- Hero Image -->
+      <div class="w-full lg:w-1/2 flex justify-center lg:justify-end mb-8 lg:mb-0 relative">
+        <!-- Decorative SVG/Shape -->
+        <div class="absolute -top-10 -right-10 w-72 h-72 bg-gradient-to-br from-indigo-200 to-purple-200 rounded-full opacity-40 blur-2xl z-0"></div>
+        <img
+          src="/public/hero-illustration.svg"
+          alt="إدارة المشاريع"
+          class="relative max-w-xs md:max-w-md rounded-3xl shadow-xl border-4 border-indigo-100 z-10"
+          aria-hidden="true"
+          onerror="this.style.display='none';"
+        />
+        <!-- Optional badge -->
+        <span class="absolute top-4 right-4 bg-indigo-600 text-white text-xs font-bold px-4 py-1 rounded-full shadow z-20">جديد</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-base text-indigo-600 font-semibold tracking-widest uppercase mb-2">المميزات</h2>
+        <p class="text-4xl font-extrabold text-gray-900 mb-4">كل ما تحتاجه لإدارة مشاريعك</p>
+        <p class="text-xl text-gray-500">منصة شاملة تجمع بين البساطة والقوة لتساعدك في إدارة مشاريعك بكفاءة عالية</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <!-- Feature Card 1 -->
+        <div tabindex="0" aria-label="إدارة المهام"
+          class="group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border-t-4 border-indigo-500 flex flex-col items-end p-8 relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-l from-indigo-400 to-purple-400 opacity-20"></div>
+          <div class="bg-gradient-to-br from-indigo-500 to-purple-500 text-white rounded-full p-5 mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <i class="fas fa-tasks fa-2x"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">إدارة المهام</h3>
+          <p class="text-gray-600 text-right mb-1">أنشئ وأدر المهام بسهولة مع إمكانية تعيين الأولويات والمواعيد النهائية</p>
+          <span class="text-xs text-indigo-500 font-semibold mt-2">تنظيم ذكي</span>
+        </div>
+        <!-- Feature Card 2 -->
+        <div tabindex="0" aria-label="تعاون الفريق"
+          class="group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border-t-4 border-indigo-500 flex flex-col items-end p-8 relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-l from-indigo-400 to-purple-400 opacity-20"></div>
+          <div class="bg-gradient-to-br from-indigo-500 to-purple-500 text-white rounded-full p-5 mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <i class="fas fa-users fa-2x"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">تعاون الفريق</h3>
+          <p class="text-gray-600 text-right mb-1">تعاون مع فريقك في الوقت الفعلي مع إشعارات فورية وتحديثات مستمرة</p>
+          <span class="text-xs text-indigo-500 font-semibold mt-2">تواصل فعال</span>
+        </div>
+        <!-- Feature Card 3 -->
+        <div tabindex="0" aria-label="تقارير وتحليلات"
+          class="group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border-t-4 border-indigo-500 flex flex-col items-end p-8 relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-l from-indigo-400 to-purple-400 opacity-20"></div>
+          <div class="bg-gradient-to-br from-indigo-500 to-purple-500 text-white rounded-full p-5 mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <i class="fas fa-chart-line fa-2x"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">تقارير وتحليلات</h3>
+          <p class="text-gray-600 text-right mb-1">احصل على رؤى مفصلة حول أداء مشاريعك مع رسوم بيانية تفاعلية</p>
+          <span class="text-xs text-indigo-500 font-semibold mt-2">رؤية واضحة</span>
+        </div>
+        <!-- Feature Card 4 -->
+        <div tabindex="0" aria-label="أمان عالي"
+          class="group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border-t-4 border-indigo-500 flex flex-col items-end p-8 relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-l from-indigo-400 to-purple-400 opacity-20"></div>
+          <div class="bg-gradient-to-br from-indigo-500 to-purple-500 text-white rounded-full p-5 mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <i class="fas fa-shield-alt fa-2x"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">أمان عالي</h3>
+          <p class="text-gray-600 text-right mb-1">بياناتك محمية بأحدث تقنيات التشفير مع إمكانية الوصول الآمن من أي مكان</p>
+          <span class="text-xs text-indigo-500 font-semibold mt-2">حماية متقدمة</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project & Task Cards Section -->
+  <section class="py-12 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 justify-center">
+        <!-- Project Card -->
+        <button (click)="navigateToDashboard()" aria-label="إدارة المشاريع" class="group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border-t-4 border-purple-500 flex flex-col items-end p-8 relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2">
+          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-l from-purple-400 to-indigo-400 opacity-20"></div>
+          <div class="bg-gradient-to-br from-purple-500 to-indigo-500 text-white rounded-full p-5 mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <i class="fas fa-folder-open fa-2x"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">المشاريع</h3>
+          <p class="text-gray-600 text-right mb-1">إدارة جميع مشاريعك بسهولة وتتبع تقدمها في مكان واحد</p>
+          <span class="text-xs text-purple-500 font-semibold mt-2">إدارة المشاريع</span>
+        </button>
+        <!-- Task Card -->
+        <button (click)="navigateToDashboard()" aria-label="إدارة المهام" class="group bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border-t-4 border-indigo-500 flex flex-col items-end p-8 relative overflow-hidden focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2">
+          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-l from-indigo-400 to-purple-400 opacity-20"></div>
+          <div class="bg-gradient-to-br from-indigo-500 to-purple-500 text-white rounded-full p-5 mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <i class="fas fa-tasks fa-2x"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-2">المهام</h3>
+          <p class="text-gray-600 text-right mb-1">أنشئ وأدر المهام الخاصة بكل مشروع بسهولة وفعالية</p>
+          <span class="text-xs text-indigo-500 font-semibold mt-2">إدارة المهام</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="bg-indigo-700 py-16">
+    <div class="container mx-auto text-center px-4">
+      <h2 class="text-4xl font-extrabold text-white mb-4">جاهز للبدء؟</h2>
+      <p class="text-lg text-indigo-200 mb-8">ابدأ في إدارة مشاريعك بكفاءة عالية مع فريقنا المتميز</p>
+      <button 
+        (click)="navigateToSignup()"
+        class="px-10 py-4 rounded-lg text-lg font-bold bg-white text-indigo-700 hover:bg-indigo-50 transition-colors shadow focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2">
+        ابدأ مجاناً
+      </button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300 pt-12 pb-6">
+    <div class="container mx-auto px-4 flex flex-col lg:flex-row justify-between items-start gap-8">
+      <div class="mb-8 lg:mb-0">
+        <h3 class="text-2xl font-bold text-white mb-2">ProjectFlow</h3>
+        <p class="text-base">منصة إدارة المشاريع الرائدة في المنطقة العربية</p>
+        <div class="flex gap-4 mt-4">
+          <a href="#" aria-label="تويتر" class="hover:text-white"><i class="fab fa-twitter fa-lg"></i></a>
+          <a href="#" aria-label="فيسبوك" class="hover:text-white"><i class="fab fa-facebook fa-lg"></i></a>
+          <a href="#" aria-label="لينكدإن" class="hover:text-white"><i class="fab fa-linkedin fa-lg"></i></a>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row gap-8 w-full justify-end">
+        <div>
+          <h4 class="text-sm font-semibold text-gray-400 mb-4">المنتج</h4>
+          <ul class="space-y-2">
+            <li><a href="#features" class="hover:text-white transition-colors">المميزات</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">الأسعار</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">الدعم</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold text-gray-400 mb-4">الشركة</h4>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-white transition-colors">حولنا</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">الوظائف</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">اتصل بنا</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="mt-8 border-t border-gray-700 pt-6 text-center">
+      <p class="text-base">&copy; 2024 ProjectFlow. جميع الحقوق محفوظة.</p>
+    </div>
+  </footer>
+</div> 
