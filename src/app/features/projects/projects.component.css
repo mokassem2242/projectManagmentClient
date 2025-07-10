@@ -8,4 +8,9 @@
 
 .p-table {
   @apply rounded-lg overflow-hidden;
+}
+
+.p-drawer {
+  width: 1000px !important;
+  max-width: 1000px !important;
 } 
