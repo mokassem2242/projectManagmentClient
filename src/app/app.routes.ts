@@ -22,5 +22,9 @@ export const routes: Routes = [
     loadComponent: () => import('./features/profile/profile.component').then(m => m.ProfileComponent),
     title: 'الملف الشخصي',
     canActivate: [authGuard]
+  },
+  {
+    path: 'projects',
+    loadChildren: () => import('./features/projects/projects.routes').then(m => m.PROJECTS_ROUTES)
   }
 ];

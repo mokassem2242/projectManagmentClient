@@ -1,0 +1,11 @@
+:host {
+  @apply block w-full;
+}
+
+.p-sidebar {
+  @apply bg-white shadow-lg;
+}
+
+.p-table {
+  @apply rounded-lg overflow-hidden;
+} 
